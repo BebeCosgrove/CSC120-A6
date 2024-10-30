@@ -13,22 +13,41 @@ public class Building {
         this.nFloors = nFloors;
     }
 
+    /**
+     * Getter for name
+     * @return name 
+     */
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Getter for address
+     * @return address
+     */
     public String getAddress() {
         return this.address;
     }
 
+    /**
+     * Getter for number of floors
+     * @return number of floors
+     */
     public int getFloors() {
         return this.nFloors;
     }
 
+    /**
+     * Provides information about the building
+     */
     public String toString() {
         return this.name + " is a " + this.nFloors + "-story building located at " + this.address;
     }
 
+    /**
+     * Main method 
+     * @param args command line arguments passed into method
+     */
     public static void main(String[] args) {
         Building fordHall = new Building("Ford Hall", "100 Green Street Northampton, MA 01063", 4);
         System.out.println(fordHall);
