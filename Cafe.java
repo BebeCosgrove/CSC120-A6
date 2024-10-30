@@ -31,7 +31,7 @@ public class Cafe extends Building{
      * @param nCreams number of creams used 
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
-        if (this.nCoffeeOunces < size && this.nSugarPackets < nSugarPackets && this.nCreams < nCreams && this.nCups - 1 == 0){
+        if (this.nCoffeeOunces < size && this.nSugarPackets < nSugarPackets && this.nCreams < nCreams && this.nCups - 1 <= 0){
             restock(size, nSugarPackets, nCreams, nCups); // inputted 0 to indicate that there didn't need to be anything restocked
             this.nCoffeeOunces = this.nCoffeeOunces - size;
             this.nSugarPackets = this.nSugarPackets - nSugarPackets;
