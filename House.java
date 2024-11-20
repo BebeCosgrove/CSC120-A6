@@ -37,7 +37,7 @@ public class House extends Building {
    * @param name name of person
    */
   public void moveIn(String name){
-    if(isResident(name) == true){
+    if(isResident(name)){
       throw new RuntimeException("Person is already in house");
     } else{
       residents.add(name);
@@ -50,7 +50,7 @@ public class House extends Building {
    * @return name inputted
    */
   public String moveOut(String name){
-    if (isResident(name) == true){
+    if (isResident(name)){
       residents.remove(name);
       return name;
     } else{
@@ -66,11 +66,7 @@ public class House extends Building {
    * @return boolean based on whether person is either in house or not
    */
   public boolean isResident(String person){
-    if(residents.contains(person)){
-      return true;
-    } else{
-      return false;
-    }
+    return residents.contains(person);
   }
 
   /**
@@ -78,7 +74,8 @@ public class House extends Building {
      * @param args command line arguments passed into method
      */
   public static void main(String[] args) {
-    new House();
+    House haynes = new House("Haynes House", "1 Mandelle Rd", 4, true);
+    haynes.moveIn("Bebe");
   }
 
 }

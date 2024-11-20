@@ -31,63 +31,34 @@ public class Cafe extends Building{
      * @param nCreams number of creams used 
      */
     public void sellCoffee(int size, int nSugarPackets, int nCreams){
-        if (this.nCoffeeOunces < size && this.nSugarPackets < nSugarPackets && this.nCreams < nCreams && this.nCups - 1 <= 0){
-            restock(size, nSugarPackets, nCreams, nCups); // inputted 0 to indicate that there didn't need to be anything restocked
-            this.nCoffeeOunces = this.nCoffeeOunces - size;
-            this.nSugarPackets = this.nSugarPackets - nSugarPackets;
-            this.nCreams = this.nCreams - nCreams;
-            this.nCups = this.nCups - 1;
-            System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
-            System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
-            System.out.println("Amount of cream in inventory: " + this.nCreams);
-            System.out.println("Amount of cups in inventory: " + this.nCups);
+        if (this.nCoffeeOunces < size || this.nSugarPackets < nSugarPackets || this.nCreams < nCreams || this.nCups - 1 <= 0){
+            if (this.nCoffeeOunces < size){
+                restock(size,0,0,0);
 
+            } 
+            if (this.nSugarPackets < nSugarPackets){
+                restock(0, nSugarPackets, 0, 0);
 
-        } else if (this.nCoffeeOunces < size && this.nSugarPackets < nSugarPackets && this.nCreams < nCreams && this.nCups - 1 > 0){
-            restock(size, nSugarPackets, nCreams, 0); // inputted 0 to indicate that there didn't need to be anything restocked
-            this.nCoffeeOunces = this.nCoffeeOunces - size;
-            this.nSugarPackets = this.nSugarPackets - nSugarPackets;
-            this.nCreams = this.nCreams - nCreams;
-            this.nCups = this.nCups - 1;
-            System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
-            System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
-            System.out.println("Amount of cream in inventory: " + this.nCreams);
-            System.out.println("Amount of cups in inventory: " + this.nCups);
-
-        } else if (this.nCoffeeOunces < size && this.nSugarPackets < nSugarPackets && this.nCreams >= nCreams && this.nCups - 1 > 0){
-            restock(size, nSugarPackets, 0, 0); // inputted 0 to indicate that there didn't need to be anything restocked
-            this.nCoffeeOunces = this.nCoffeeOunces - size;
-            this.nSugarPackets = this.nSugarPackets - nSugarPackets;
-            this.nCreams = this.nCreams - nCreams;
-            this.nCups = this.nCups - 1;
-            System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
-            System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
-            System.out.println("Amount of cream in inventory: " + this.nCreams);
-            System.out.println("Amount of cups in inventory: " + this.nCups);
-
-        } else if (this.nCoffeeOunces < size && this.nSugarPackets >= nSugarPackets && this.nCreams >= nCreams && this.nCups - 1 > 0){
-            restock(size, 0, 0, 0); // inputted 0 to indicate that there didn't need to be anything restocked
-            this.nCoffeeOunces = this.nCoffeeOunces - size;
-            this.nSugarPackets = this.nSugarPackets - nSugarPackets;
-            this.nCreams = this.nCreams - nCreams;
-            this.nCups = this.nCups - 1;
-            System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
-            System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
-            System.out.println("Amount of cream in inventory: " + this.nCreams);
-            System.out.println("Amount of cups in inventory: " + this.nCups);
-
-        } else if (this.nCoffeeOunces >= size && this.nSugarPackets >= nSugarPackets && this.nCreams >= nCreams && this.nCups - 1 > 0){
-            this.nCoffeeOunces = this.nCoffeeOunces - size;
-            this.nSugarPackets = this.nSugarPackets - nSugarPackets;
-            this.nCreams = this.nCreams - nCreams;
-            this.nCups = this.nCups - 1;
-            System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
-            System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
-            System.out.println("Amount of cream in inventory: " + this.nCreams);
-            System.out.println("Amount of cups in inventory: " + this.nCups);
-        }
+            } 
+            if (this.nCreams < nCreams){
+                restock(0,0,nCreams,0);
+            } 
+            if (this.nCups - 1 <= 0){
+                restock(0,0,0,nCups);
+            }
+        } 
+        this.nCoffeeOunces = this.nCoffeeOunces - size;
+        this.nSugarPackets = this.nSugarPackets - nSugarPackets;
+        this.nCreams = this.nCreams - nCreams;
+        this.nCups = this.nCups - 1;
+        
+        System.out.println(("Amount of coffee ounces in inventory: " +this.nCoffeeOunces));
+        System.out.println("Amount of sugar packets in inventory: " + this.nSugarPackets);
+        System.out.println("Amount of cream in inventory: " + this.nCreams);
+        System.out.println("Amount of cups in inventory: " + this.nCups);
         
     }
+         
 
     /**
      * Restocks inventory when cafe is out of something
@@ -99,11 +70,14 @@ public class Cafe extends Building{
     private void restock(int nCoffeeOunces, int nSugarPackets, int nCreams, int nCups){
         if (nCoffeeOunces > 0){ // if variable is 0 that means that it doesn't need to be restocked
             this.nCoffeeOunces = nCoffeeOunces + 50 ;
-        } if (nSugarPackets > 0){ 
+        } 
+        if (nSugarPackets > 0){ 
             this.nSugarPackets = nSugarPackets + 50;
-        } if (nCreams > 0) {
+        } 
+        if (nCreams > 0) {
             this.nCreams = nCreams;
-        } if (nCups > 0){
+        } 
+        if (nCups > 0){
             this.nCups = nCups;
         }
 
@@ -116,7 +90,7 @@ public class Cafe extends Building{
      */
     public static void main(String[] args) {
         Cafe myCafe = new Cafe("compass cafe", "1 chapin way", 2, 12, 10, 3, 4);
-        myCafe.sellCoffee(15, 3, 1);
+        myCafe.sellCoffee(15, 3, 4);
     }
     
 }
